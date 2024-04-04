@@ -1,6 +1,7 @@
 # Binaries for programs and plugins
 main
 venus
+Venus
 *.exe
 *.exe~
 *.so
@@ -22,3 +23,6 @@ bin/
 # vweb and database
 *.db
 *.js
+
+# Venus settings
+settings.json

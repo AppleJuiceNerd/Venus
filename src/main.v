@@ -3,5 +3,6 @@ module main
 import mastodon
 
 fn main() {
-	mastodon.prepare_app()
+	client := mastodon.load_client_details()
+	println(client.get_public_feed())
 }

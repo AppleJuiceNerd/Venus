@@ -16,16 +16,28 @@ pub struct CreateParams {
 pub fn create(params CreateParams) Application {
 	endpoint := '/api/v1/apps'
 
-	response := http.post_json(params.server + endpoint, '{
+	mut request := http.new_request(http.Method.post, params.server + endpoint, '{
 			"client_name": "${params.client_name}",
 			"redirect_uris": "${params.redirect_uris}",
 			"scopes": ${null_if_empty(params.scopes)},
 			"website": ${null_if_empty(params.website)}			
-		}') or {
-		panic('Something went wrong.')
-	}
+		}')
 
-	return json.decode(Application, response.body) or {
-		panic('Something went wrong.')
-	}
+	request.add_header(http.CommonHeader.content_type, 'application/json')
+
+	response := request.do() or { panic(err) }
+
+	return json.decode(Application, response.body) or { panic(err) }
+}
+
+pub fn verify_credentials(server string, token string) Application {
+	endpoint := '/api/v1/apps/verify_credentials'
+
+	mut request := http.new_request(http.Method.get, server + endpoint, '')
+
+	request.add_custom_header('Authorization', 'Bearer ${token}') or { panic(err) }
+
+	response := request.do() or { panic(err) }
+
+	return json.decode(Application, response.body) or { panic(response.status()) }
 }
