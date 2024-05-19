@@ -1,10 +1,8 @@
 module api
 
-import json
-
 pub struct Application {
 pub:
-	name          string @[required]
+	name          string
 	website       string
 	client_id     string
 	client_secret string
@@ -12,30 +10,30 @@ pub:
 
 pub struct Token {
 pub:
-	access_token string @[required]
-	token_type   string @[required]
-	scope        string @[required]
-	created_at   u64    @[required]
+	access_token string
+	token_type   string
+	scope        string
+	created_at   u64
 }
 
 pub struct Status {
 pub:
-	id                     string             @[required]
-	uri                    string             @[required]
-	created_at             string             @[required]
-	account                Account            @[required]
-	content                string             @[required]
-	visibility             string             @[required]
-	sensitive              bool               @[required]
-	spoiler_text           string             @[required]
-	media_attatchments     []MediaAttatchment @[required]
+	id                     string
+	uri                    string
+	created_at             string
+	account                Account
+	content                string
+	visibility             string
+	sensitive              bool
+	spoiler_text           string
+	media_attatchments     []MediaAttatchment
 	application            Application
-	mentions               []StatusMention    @[required]
-	tags                   []StatusTag        @[required]
-	emojis                 []CustomEmoji      @[required]
-	reblogs_count          int                @[required]
-	favourites_count       int                @[required]
-	replies_count          int                @[required]
+	mentions               []StatusMention
+	tags                   []StatusTag
+	emojis                 []CustomEmoji
+	reblogs_count          int
+	favourites_count       int
+	replies_count          int
 	url                    string
 	in_reply_to_id         string
 	in_reply_to_account_id string
@@ -55,105 +53,105 @@ pub:
 
 pub struct StatusMention {
 pub:
-	id       string @[required]
-	username string @[required]
-	url      string @[required]
-	acct     string @[required]
+	id       string
+	username string
+	url      string
+	acct     string
 }
 
 pub struct StatusTag {
 pub:
-	name string @[required]
-	url  string @[required]
+	name string
+	url  string
 }
 
 pub struct Account {
 pub:
-	id              string        @[required]
-	username        string        @[required]
-	acct            string        @[required]
-	url             string        @[required]
-	display_name    string        @[required]
-	note            string        @[required]
-	avatar          string        @[required]
-	avatar_static   string        @[required]
-	header          string        @[required]
-	header_static   string        @[required]
-	locked          string        @[required]
-	fields          []Field       @[required]
-	emojis          []CustomEmoji @[required]
-	bot             bool          @[required]
-	group           bool          @[required]
+	id              string
+	username        string
+	acct            string
+	url             string
+	display_name    string
+	note            string
+	avatar          string
+	avatar_static   string
+	header          string
+	header_static   string
+	locked          string
+	fields          []Field
+	emojis          []CustomEmoji
+	bot             bool
+	group           bool
 	discoverable    bool
 	noindex         bool
 	moved           string // v.is.complaining.comment
 	suspended       bool
 	limited         bool
-	created_at      string        @[required]
+	created_at      string
 	last_status_at  string
-	statuses_count  int           @[required]
-	followers_count int           @[required]
-	following_count int           @[required]
+	statuses_count  int
+	followers_count int
+	following_count int
 }
 
 pub struct Field {
 pub:
-	name        string @[required]
-	value       string @[required]
+	name        string
+	value       string
 	verified_at string
 }
 
 pub struct MediaAttatchment {
 pub:
-	id          string @[required]
-	type_       string @[json: 'type'; required]
-	url         string @[required]
-	preview_url string @[required]
+	id          string
+	type_       string @[json: 'type']
+	url         string
+	preview_url string
 	remote_url  string
-	// meta string @[required] // TODO: Media metadata
+	// meta string  // TODO: Media metadata
 	description string
-	blurhash    string @[required]
+	blurhash    string
 }
 
 pub struct CustomEmoji {
-	shortcode         string @[required]
-	url               string @[required]
-	static_url        string @[required]
-	visible_in_picker bool   @[required]
-	category          string @[required]
+	shortcode         string
+	url               string
+	static_url        string
+	visible_in_picker bool
+	category          string
 }
 
 pub struct Poll {
 pub:
-	id           string        @[required]
+	id           string
 	expires_at   string
-	expired      bool          @[required]
-	multiple     bool          @[required]
+	expired      bool
+	multiple     bool
 	voters_count int
-	options      []PollOption  @[required]
-	emojis       []CustomEmoji @[required]
+	options      []PollOption
+	emojis       []CustomEmoji
 	voted        bool
 	own_votes    bool
 }
 
 pub struct PollOption {
 pub:
-	title       string @[required]
+	title       string
 	votes_count int
 }
 
 pub struct PreviewCard {
 pub:
-	url           string @[required]
-	title         string @[required]
-	description   string @[required]
-	type_         string @[json: 'type'; required]
-	author_name   string @[required]
-	providor_name string @[required]
-	html          string @[required]
-	width         int    @[required]
-	height        int    @[required]
+	url           string
+	title         string
+	description   string
+	type_         string @[json: 'type']
+	author_name   string
+	providor_name string
+	html          string
+	width         int
+	height        int
 	image         string
-	embed_url     string @[required]
+	embed_url     string
 	blurhash      string
 }

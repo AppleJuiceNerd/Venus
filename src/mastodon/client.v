@@ -1,6 +1,7 @@
 module mastodon
 
 import api
+// import utils.logger | implementation soon(tm)
 import os
 import json
 
@@ -34,6 +35,7 @@ pub fn prepare_client() Client {
 		server: server
 		application: mast_app
 		token: mast_token
+		// logger: logger.new_logger()
 	}
 }
 
@@ -44,14 +46,14 @@ pub fn (c Client) get_public_feed() []api.Status {
 	)
 }
 
-pub fn save_client_details(c Client) {
+pub fn save_client_details(mut c Client) {
 	os.write_file('./settings.json', json.encode(c)) or { panic(err) }
-	println('Saved Settings')
+	// c.logger.log('Saved Settings', logger.Severity.debug)
 }
 
 pub fn load_client_details() Client {
 	str := os.read_file('./settings.json') or { panic(err) }
 	out := json.decode(Client, str) or { panic(err) }
-	println('Loaded Settings')
+	// logger.log('Loaded Settings', logger.Severity.debug)
 	return out
 }

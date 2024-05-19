@@ -5,6 +5,7 @@ import json
 
 @[params]
 pub struct CreateParams {
+pub:
 	server string @[required]
 
 	client_name   string @[required]

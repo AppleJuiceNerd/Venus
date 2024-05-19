@@ -1,8 +1,11 @@
 module main
 
-import mastodon
+// import mastodon | unused for now
+import app.cli
 
 fn main() {
-	client := mastodon.load_client_details()
-	println(client.get_public_feed())
+	// mut client := mastodon.load_client_details()
+
+	mut ui := cli.new()
+	ui.tui.run() or { panic(err) }
 }

@@ -5,6 +5,7 @@ import json
 
 @[params]
 pub struct TokenParams {
+pub:
 	server string @[required]
 
 	grant_type    string @[required]
